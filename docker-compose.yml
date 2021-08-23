@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  database:
+    container_name: database-product-ms
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_DB: product_ms
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  application:
+    container_name: application-product-ms
+    image: compassouol/product-ms
+    environment:
+      DB_HOST: database
+    ports:
+      - "9999:8080"
